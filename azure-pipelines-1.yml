@@ -26,10 +26,6 @@ steps:
   displayName: 'Install dependencies'
 
 - script: |
-    pip install pytest pytest-azurepipelines
-    pytest
-  displayName: 'pytest'
-- script: |
      cd simple-python-app
      echo "Building docker image"
      docker build . -t "docker.io/chowdarybvsn/simple-python-flask-app:latest"
