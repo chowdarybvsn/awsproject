@@ -1,0 +1,22 @@
+# Python package
+# Create and test a Python package on multiple Python versions.
+# Add steps that analyze code, save the dist with the build record, publish to a PyPI-compatible index, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/python
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      python: 3.11
+  pre_build:
+    commands:
+      pip install -r simple-python-app/requirements.txt
+      # - command
+  build:
+    commands:
+      - cd simple-python-app
+      - echo "Building docker image"
+      - docker build . -t "docker.io/chowdarybvsn/simple-python-flask-app:latest"
+      - docker push "chowdarybvsn/simple-python-flask-app:latest"
+  post_build:
+    commands:
+      - echo "build is successful"
