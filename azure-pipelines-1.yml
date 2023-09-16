@@ -25,8 +25,7 @@ steps:
     pip install -r simple-python-app/requirements.txt
   displayName: 'Install dependencies'
 
-- script: |
-     cd simple-python-app
-     echo "Building docker image"
-     docker build . -t "docker.io/chowdarybvsn/simple-python-flask-app:latest"
-     docker push "chowdarybvsn/simple-python-flask-app:latest"
+- task: Docker@2
+  inputs:
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
